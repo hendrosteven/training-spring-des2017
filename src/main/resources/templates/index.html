@@ -23,7 +23,13 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="col-lg-9">
+			<div class="row" th:if="${searchText}">
+				<div class="col-lg-12">
+					<b>Search Key : </b> <span th:text="${searchText}"></span>
+				</div>
+			</div>
 			<table class="table table-striped">
 				<thead>
 					<tr>

@@ -6,6 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "tbl_user")
@@ -15,12 +19,17 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotEmpty(message="fullName is required")
 	@Column(length = 150, nullable = false)
 	private String fullName;
 	
+	@NotEmpty(message="Email is required")
+	@Email(message="Email invalid")
 	@Column(length = 150, nullable = false, unique = true)
 	private String email;
 	
+	@NotEmpty(message="Password is required")
+	@Min(value=6, message="Password min 6 characters")
 	@Column(length = 150, nullable = false)
 	private String password;
 

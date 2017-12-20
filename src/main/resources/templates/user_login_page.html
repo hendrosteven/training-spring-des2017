@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Spring MVC</title>
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+	<div th:replace="fragment/header::header"></div>
+	<div class="container">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">
+			<h3 class="text-center">Login</h3>
+			<span th:if="${session.messages}!=null">
+				<div class="alert alert-danger">
+					<strong>Upps!</strong>
+					<p th:text="${session.messages}"></p>
+				</div> <span th:remove="all" th:text="${session.remove('messages')}"></span>
+			</span>
+			<form th:action="@{/user/login}" th:object="${user}" method="post">
+				<div class="form-group">
+					<label for="email">Email</label> <input type="text"
+						class="form-control" placeholder="Enter email" th:field="*{email}" />
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label> <input type="password"
+						class="form-control" placeholder="Enter password"
+						th:field="*{password}" />
+				</div>
+				<p>
+					<input type="submit" class="btn btn-danger" value="Login" />
+					<a href="/user/register" class="btn btn-success">Register</a>
+				</p>
+			</form>
+		</div>
+		<div class="col-lg-4"></div>
+	</div>
+
+	<div th:replace="fragment/footer::footer"></div>
+	
+</body>
+</html>
