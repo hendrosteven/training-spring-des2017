@@ -14,7 +14,7 @@ public interface ProductRepo extends CrudRepository<Product, Long>{
 	public List<Product> findAll();
 	public List<Product> findByCategory(Category category);
 	
-	@Query("select p from Product p where p.name like :name")
+	@Query("select p from Product p where lower(p.name) like lower(:name)")
 	public List<Product> findByName(@Param("name") String name);
 	
 	@Query("select p from Product p where p.price between :min and :max")
