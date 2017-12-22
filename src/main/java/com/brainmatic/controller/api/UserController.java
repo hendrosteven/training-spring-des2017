@@ -17,7 +17,7 @@ import com.brainmatic.dto.SearchUser;
 import com.brainmatic.entity.User;
 import com.brainmatic.services.UserService;
 
-@CrossOrigin
+@CrossOrigin()
 @RestController("userApi")
 @RequestMapping("/api/user")
 public class UserController {

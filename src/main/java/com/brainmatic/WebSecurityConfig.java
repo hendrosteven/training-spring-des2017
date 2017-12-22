@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 
 import com.brainmatic.services.UserService;
 
@@ -25,8 +26,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
+		http.addFilterBefore(new CorsConfig(), 
+				ChannelProcessingFilter.class);
 		http.authorizeRequests()
 		.antMatchers("/").permitAll()
+		.antMatchers(HttpMethod.GET, "/webjars/**").permitAll()
 		.antMatchers(HttpMethod.GET, "/api/category").permitAll()
 		.antMatchers(HttpMethod.GET, "/api/product").permitAll()
 		.antMatchers(HttpMethod.POST, "/api/user").permitAll()
